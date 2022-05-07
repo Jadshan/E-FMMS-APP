@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "920143017824",
+    "project_id": "e-fmms-app",
+    "storage_bucket": "e-fmms-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920143017824:android:a4a131219c5b01bb4cd005",
+        "android_client_info": {
+          "package_name": "com.e_fmms_app_"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920143017824-s13jl0d4t2cgnt096iopg2dgg6go1sjp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR9gC7q-vwcRThY4j78dItxOhSo8HI0Ao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920143017824-s13jl0d4t2cgnt096iopg2dgg6go1sjp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
