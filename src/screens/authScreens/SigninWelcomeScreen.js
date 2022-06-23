@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View,Image, TextInput, onPress, TouchableOpacity, Pressable,ScrollView} from 'react-native';
+import { StyleSheet, Text, View,Image,Dimensions, TextInput, onPress, TouchableOpacity, Pressable,ScrollView} from 'react-native';
 import React,{useState,useRef,useEffect,useContext} from 'react';
 import { colors, parameters,title } from '../../global/Styles';
 import { Icon, withTheme,Button,SocialIcon } from '@rneui/themed';
 import Swiper from 'react-native-swiper';
 import { SignInContext } from '../../contexts/authContext';
 import auth from '@react-native-firebase/auth'
+import Guest from '../../Guest/Navigation';
+
+const SCREEN_Height = Dimensions.get('window').height
 
 export default function SigninWelcomeScreen({ navigation }){
     
@@ -30,7 +33,7 @@ export default function SigninWelcomeScreen({ navigation }){
             Welcome to E_FMMS
             </Text>
         </View>
-        <View style={{flex:4,justifyContent:'center'}}>
+        <View style={{flex:4,justifyContent:'center',}}>
         <Swiper autoplay ={true}>
             <View style={styles.slide1}>
                 <Image
@@ -54,6 +57,7 @@ export default function SigninWelcomeScreen({ navigation }){
             </View>
         </Swiper>
         </View>
+        </View>
         <View style={{flex:4}}>
         
           <Button
@@ -64,14 +68,20 @@ export default function SigninWelcomeScreen({ navigation }){
               navigation.navigate('SignInScreen')
           }}
            />
+            <Button
+          title="Signinasguest"
+          buttonStyle = {parameters.styledButton}
+          titleStyle = {parameters.buttonTitle}
+          onPress={()=>{
+              navigation.navigate(Guest)
+          }}
+           />
             <Button 
           title="Create New"
-          buttonStyle = {parameters.styledButton2}
-          titleStyle = {parameters.buttonTitle2}
+          buttonStyle = {parameters.styledButton}
+          titleStyle = {parameters.buttonTitle}
           onPress ={()=>{navigation.navigate("SignUpScreen")}}
            />
-        </View>
-
         </View>
         </ScrollView>
     )}

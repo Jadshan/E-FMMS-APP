@@ -4,6 +4,9 @@ import {  StatusBar,StyleSheet,View,} from 'react-native';
 import { colors } from './src/global/Styles';
 import RootNavigator from './src/navigation/RootNavigator';
 import { SignInContextProvider } from './src/contexts/authContext';
+import Guest from './src/Guest/Navigation';
+import Index from './src/navigation';
+//import Index from './sample/screens/index';
 
 
 
@@ -18,7 +21,7 @@ export default function App  () {
       barStyle= "light-content"
       backgroundColor={colors.buttons}
     />
-     <RootNavigator />
+     <Guest />
    </View>
    </SignInContextProvider>
   );

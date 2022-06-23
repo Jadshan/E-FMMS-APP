@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable'
 import { Icon, withTheme,Button,SocialIcon } from '@rneui/themed';
 import { Formik } from 'formik';
 import Header from '../../components/Header'
-import auth from '@react-native-firebase/auth';
+import auth from "@react-native-firebase/auth"
 import { SignInContext } from '../../contexts/authContext';
 
 export default function SignInScreen({navigation}){
@@ -163,6 +163,14 @@ export default function SignInScreen({navigation}){
                     buttonStyle ={styles.createButton}
                     titleStyle ={styles.createButtonTitle}
                     onPress ={()=>{navigation.navigate("SignUpScreen")}}
+                />
+            </View>
+            <View style ={{alignItems:"flex-end",marginHorizontal:20}}>
+                <Button 
+                    title ="Register"
+                    buttonStyle ={styles.createButton}
+                    titleStyle ={styles.createButtonTitle}
+                    onPress ={()=>{navigation.navigate("Register")}}
                 />
             </View>
 

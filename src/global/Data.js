@@ -8,31 +8,31 @@ export const filterData =[
 
 
     export const filterData2 = [
-        {name:"Fast food",Image:require("../../assets/8.jpg") , id:"0"},
-{name:"Burgers",Image: require("../../assets/8.jpg"),id:"1"},
-{name:"Salads",Image:require("../../assets/8.jpg"),id:"2"},
-{name:"Hotdog",Image: require("../../assets/8.jpg"),id:"3"},
-{name:"Chinese",Image:require("../../assets/8.jpg"),id:"4"},
-{name:"Mexican",Image:require("../../assets/8.jpg"),id:"5"},  
-{name:"Sea food",Image:require("../../assets/8.jpg"),id:"6"},
-{name:"Chinese Food",Image:require("../../assets/8.jpg"),id:"7"},
-{name:"Mexican pie",Image:require("../../assets/8.jpg"),id:"8"},  
-{name:"Ocean dish",Image:require("../../assets/8.jpg"),id:"9"},
+        {name:"crops1",Image:require("../../assets/8.jpg") , id:"0"},
+{name:"crops2",Image: require("../../assets/8.jpg"),id:"1"},
+{name:"crops3",Image:require("../../assets/8.jpg"),id:"2"},
+{name:"crops4",Image: require("../../assets/8.jpg"),id:"3"},
+{name:"crops5",Image:require("../../assets/8.jpg"),id:"4"},
+{name:"crops6",Image:require("../../assets/8.jpg"),id:"5"},  
+{name:"crops7",Image:require("../../assets/8.jpg"),id:"6"},
+{name:"crops8",Image:require("../../assets/8.jpg"),id:"7"},
+{name:"crops9",Image:require("../../assets/8.jpg"),id:"8"},  
+{name:"crops10",Image:require("../../assets/8.jpg"),id:"9"},
 ];
 
  export const restaurantsData = [
-                  {restaurantName:"Mc Donalds", farAway:"21.2",
+                  {restaurantName:"keylis", farAway:"21.2",
                   businessAddress:"22 Bessie street, Cape Town",
                   images:'https://images.unsplash.com/photo-1566843017040-967597a4a490?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGFncmljdWx0dXJlJTIwcHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                   averageReview:4.9,numberOfReview:272,coordinates : {lat: -26.1888612, lng: 28.246325} ,discount:10,deliveryTime:15,
-                  collectTime:5, foodType:"Burgers, Wraps,Milkshakes..." ,
+                  collectTime:5, Type:"Burgers, Wraps,Milkshakes..." ,
                   productData:[{name:"Hand cut chips", price:29.30,image:"https://www.hayleysagriculture.com/ADMIN/images/crop_solution/1562061122.jpg"},
                   {name:"Big Mac", price:50.80,image:"https://www.hayleysagriculture.com/ADMIN/images/crop_solution/1562061652.jpg"},{name:"Chicken Burger",
                    price:70,image:"https://www.hayleysagriculture.com/ADMIN/images/crop_solution/1562062509.jpeg"},
                     ],
                   id:0},
                   
-                  {restaurantName:"KFC", farAway:"12.7",businessAddress:"22 Bessie street, Cape Town",
+                  {restaurantName:"Keylis", farAway:"12.7",businessAddress:"22 Bessie street, Cape Town",
                   images:'https://images.unsplash.com/photo-1492496913980-501348b61469?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YWdyaWN1bHR1cmUlMjBwcm9kdWN0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
                   averageReview:4.3, numberOfReview:306, coordinates : {lat: -26.1891648, lng: 28.2441808},
                   discount:20,deliveryTime:30,collectTime:10, foodType:"Chicken,Chicken wings... ",
@@ -43,7 +43,7 @@ export const filterData =[
                       ],
                   id:1},
                   
-                  {restaurantName:"Steers", farAway:"5",businessAddress:" 17 Olivia Rd, Johannesburg",
+                  {restaurantName:"teers", farAway:"5",businessAddress:" 17 Olivia Rd, Johannesburg",
                   images:'https://media.istockphoto.com/photos/farmer-standing-on-corn-field-against-sky-picture-id1316321081?b=1&k=20&m=1316321081&s=170667a&w=0&h=29-KGGEIq2NcDc5W75oOrk9s4HQCEafbvBZ922jK0eM=',
                    coordinates :{ lat: -26.1886781, lng: 28.244879}, averageReview: 4.9,numberOfReview: 1272,
                     discount:12, deliveryTime:25,collectTime:15,foodType:"Flame grilled beef Burgers",
@@ -53,7 +53,7 @@ export const filterData =[
                       ],
                    id:2},
                   
-                  {restaurantName:"Roman Pizza", farAway:"7",businessAddress:" 15 Atlas Rd, Kempton Park",
+                  {restaurantName:"heylis", farAway:"7",businessAddress:" 15 Atlas Rd, Kempton Park",
                   images:'https://images.unsplash.com/photo-1566843017040-967597a4a490?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGFncmljdWx0dXJlJTIwcHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                   averageReview:4.3, numberOfReview:700, coordinates: {lat: -26.1845336, lng: 28.2481691},
                   discount:null,deliveryTime:20,collectTime:10,foodType:"Chicken pizza, Vegetarian pizza...",
@@ -99,20 +99,20 @@ export const filterData =[
           
           export const specialData =[
             {title:"LIMITED OFFER",key:0},
-            {title:"GO CHILLI",key:1},
-            {title:"GO CHEESE",key:2},
-            {title:"MCCHICKEN DELUXE PROMO",key:3},
+            //{title:"GO CHILLI",key:1},
+            //{title:"GO CHEESE",key:2},
+            //{title:"MCCHICKEN DELUXE PROMO",key:3},
           ];    
           
           export const menu = [
-            { key: 1, title: 'BEEF' },
-            { key: 2, title: 'CHICKEN' },
-            { key: 3, title: 'VEGGIE BURGER' },
-            { key: 4, title: 'SHARE BOX' },
-            { key: 5, title: 'Happy Meals' },
-            { key: 6, title: 'Fries' },
-            { key: 7, title: 'Sides' },
-            { key: 8, title: 'Milkshakes' },
+            { key: 1, title: 'item1' },
+            { key: 2, title: '2' },
+            { key: 3, title: '3' },
+            //{ key: 4, title: 'SHARE BOX' },
+            //{ key: 5, title: 'Happy Meals' },
+           // { key: 6, title: 'Fries' },
+            //{ key: 7, title: 'Sides' },
+            //{ key: 8, title: 'Milkshakes' },
           ] 
 
 

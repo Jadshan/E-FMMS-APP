@@ -1,32 +1,38 @@
 import React, {useState, useContext} from 'react';
 import {
-    View,
-    Text,
-    Platform,
-    StyleSheet,
-    Alert,
-    ActivityIndicator,
-  } from 'react-native';
+  View,
+  Text,
+  Platform,
+  StyleSheet,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
-import { FirebaseStorageTypes,storage } from '@react-native-firebase/storage';
+import { AuthContext } from '../../Guest/Navigation/AuthProvider';
+import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
 import {
-    InputField,
-    InputWrapper,
-    AddImage,
-    SubmitBtn,
-    SubmitBtnText,
-    StatusWrapper,
-  } from '../styles/AddPost';
-import { Async } from 'react-async-await';
-export default function Addpost(){
+  InputField,
+  InputWrapper,
+  AddImage,
+  SubmitBtn,
+  SubmitBtnText,
+  StatusWrapper,
+} from '../styles/AddPost';
+import Header from '../../Guest/components/Header';
+
+
+
+const  Addpost = () => {
+  const {user, logout} = useContext(AuthContext);
+
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
-
+  const [post, setPost] = useState(null);
 
   const takePhotoFromCamera = () => {
     ImagePicker.openCamera({
@@ -51,51 +57,113 @@ export default function Addpost(){
       setImage(imageUri);
     });
   };
-  
-   
+
   const submitPost = async () => {
-  const uploadUri = image;
-  let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    const imageUrl = await uploadImage();
+    console.log('Image Url: ', imageUrl);
+    console.log('Post: ', post);
 
- 
-  setUploading(true);
-
-   try {
-    await storage().ref(filename).putFile(uploadUri)
-
-    setUploading(false);
-   
-
-     Alert.alert(
-      'Image uploaded!',
-       'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
-     );
-
-
-  } catch (e) {
-    console.log(e);
-   
+    firestore()
+    .collection('posts')
+    .add({
+      userId: user.uid,
+      post: post,
+      postImg: imageUrl,
+      postTime: firestore.Timestamp.fromDate(new Date()),
+      likes: null,
+      comments: null,
+    })
+    .then(() => {
+      console.log('Post Added!');
+      Alert.alert(
+        'Post published!',
+        'Your post has been published Successfully!',
+      );
+      setPost(null);
+    })
+    .catch((error) => {
+      console.log('Something went wrong with added post to firestore.', error);
+    });
   }
-  setImage(null);
-};
 
+  const uploadImage = async () => {
+    if( image == null ) {
+      return null;
+    }
+    const uploadUri = image;
+    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
 
-    return(
-        <View style={styles.container}>
-        <InputWrapper>
-       {image != null ? <AddImage source={{uri: image}} /> : null}
+    // Add timestamp to File Name
+    const extension = filename.split('.').pop(); 
+    const name = filename.split('.').slice(0, -1).join('.');
+    filename = name + Date.now() + '.' + extension;
+
+    setUploading(true);
+    setTransferred(0);
+
+    const storageRef = storage().ref(`photos/${filename}`);
+    const task = storageRef.putFile(uploadUri);
+
+    // Set transferred state
+    task.on('state_changed', (taskSnapshot) => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+
+      setTransferred(
+        Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
+          100,
+      );
+    });
+
+    try {
+      await task;
+
+      const url = await storageRef.getDownloadURL();
+
+      setUploading(false);
+      setImage(null);
+
+      // Alert.alert(
+      //   'Image uploaded!',
+      //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
+      // );
+      return url;
+
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+
+  };
+
+  return (
+<View>
+    <Header navigation={navigation} />
+    <View style={styles.container}>
+    
+      <InputWrapper>
+        {image != null ? <AddImage source={{uri: image}} /> : null}
 
         <InputField
           placeholder="What's on your mind?"
           multiline
-          numberOfLines={4}  
+          numberOfLines={4}
+          value={post}
+          onChangeText={(content) => setPost(content)}
         />
-        
-        <SubmitBtn onPress={submitPost}>
+        {uploading ? (
+          <StatusWrapper>
+            <Text>{transferred} % Completed!</Text>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </StatusWrapper>
+        ) : (
+          <SubmitBtn onPress={submitPost}>
             <SubmitBtnText>Post</SubmitBtnText>
           </SubmitBtn>
-        </InputWrapper>
-        <ActionButton buttonColor="#2e64e5">
+        )}
+      </InputWrapper>
+      <ActionButton buttonColor="#2e64e5">
         <ActionButton.Item
           buttonColor="#9b59b6"
           title="Take Photo"
@@ -109,10 +177,12 @@ export default function Addpost(){
           <Icon name="md-images-outline" style={styles.actionButtonIcon} />
         </ActionButton.Item>
       </ActionButton>
-        </View>
+    </View>
+    </View>
+  );
+};
 
-    )   
-}
+export default  Addpost;
 
 const styles = StyleSheet.create({
   container: {

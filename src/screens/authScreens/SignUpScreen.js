@@ -6,36 +6,49 @@ import { Formik } from 'formik';
 import { Icon,Button } from '@rneui/base';
 import * as Animatable from 'react-native-animatable';
 import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
+export const initialValues = {phone_number:'',name:"",family_name:"",role:"",password:"",password2:"",email:'',username:''}
 
-const initialValues = {phone_number:'',name:"",family_name:"",password:"",email:'',username:''}
 
-
-const SignUpScreen = ({navigation}) => {
+ const SignUpScreen = ({navigation}) => {
 
 const[passwordFocussed, setPassordFocussed] = useState(false)
 const[passwordBlured,setPasswordBlured] = useState(false)
 
 async function signUp(values){
-  const {email,password} = values
-
-  try{
+  const {phone_number,email,password,password2,role,name} = values
+  if (password == password2) {
     await auth().createUserWithEmailAndPassword(email,password)
-    console.log("USER ACCOUNT CREATED")
-  }catch(error){
-    if(error.code === 'auth/email-already-in-use'){
-      Alert.alert(
-        'That email address is already inuse'
-      )
-    }
-    if(error.code === 'auth/invalid-email'){
-      Alert.alert(
-        'That email address is invalid'
-      )
-    }
-    else{
-      Alert.alert(error.code)
-    }
-  }
+    
+        .then(() => {
+            firestore()
+            .collection("logers")
+            .doc(auth().currentUser.uid)
+            .set({
+                uid: auth().currentUser.uid,
+                name,
+                role,
+                email,
+                phone_number
+            })
+        })
+        .catch((error) => {
+          if(error.code === 'auth/email-already-in-use'){
+            Alert.alert(
+              'That email address is already inuse'
+            )
+          }
+          if(error.code === 'auth/invalid-email'){
+            Alert.alert(
+              'That email address is invalid'
+            )
+          }
+          console.log("USER ACCOUNT CREATED")
+        });
+} else {
+    alert("Passwords are different!")
+}
+  
 }
 
     return (
@@ -70,16 +83,17 @@ async function signUp(values){
                                     value = {props.values.name}
                                   />
                                </View>
-
                                <View style ={styles.view6}>
                                   <TextInput 
-                                    placeholder = "Family name"
+                                    placeholder = "Who are you? (user or Guest)"
                                     style = {styles.input1}
                                     autoFocus = {false}
-                                    onChangeText = {props.handleChange('family_name')}
-                                    value = {props.values.family_name}
+                                    onChangeText = {props.handleChange('role')}
+                                    value = {props.values.role}
                                   />
                                </View>
+
+                               
                                <View style ={styles.view10}>
                                   <View>
                                       <Icon 
@@ -117,6 +131,27 @@ async function signUp(values){
                                        <Icon name ="visibility-off" color ={colors.grey3}  type = "material" style ={{marginRight:10}}/>
                                     </Animatable.View>      
                                </View>
+
+                               <View style = {styles.view14}>
+                                    <Animatable.View animation = {passwordFocussed? "fadeInRight":"fadeInLeft"} duration = {400}>
+                                       <Icon name ="lock" color ={colors.grey3}  type = "material" />
+                                    </Animatable.View>
+                                    <TextInput 
+                                          placeholder = "Re-type Password"
+                                          style = {{flex:1}}
+                                          autoFocus = {false}
+                                          onChangeText = {props.handleChange('password2')}
+                                          value = {props.values.password2}
+                                          onFocus = {()=>{setPassordFocussed(true)}}
+                                          onBlur = {()=>{setPasswordBlured(true)}}
+                                        />
+                                   <Animatable.View  animation = {passwordBlured?"fadeInLeft":"fadeInRight"} duration ={400}>
+                                       <Icon name ="visibility-off" color ={colors.grey3}  type = "material" style ={{marginRight:10}}/>
+                                    </Animatable.View>      
+                               </View>
+
+
+                               
 
                                <View style ={styles.view15}>
                                   <Text style ={styles.text3}>By creating or logging into an account you are</Text>

@@ -53,11 +53,11 @@ export default function DrawerContent  (props) {
            
                      <View style ={{marginLeft:10}}>
                         <Text style ={{fontWeight:'bold',color:"black",fontSize:18 }} >John Mark</Text>
-                        <Text style ={{color:"black",fontSize:14}} > john@xpressfood.com</Text>
+                        <Text style ={{color:"black",fontSize:14}} > user1@gmail.com</Text>
                     </View>
 
             </View>
-
+{/*
                 <View style ={{flexDirection:'row',justifyContent:"space-evenly",paddingBottom:5}}>
 
                     <View style ={{flexDirection:'row', marginTop:0,}}>
@@ -74,7 +74,7 @@ export default function DrawerContent  (props) {
                         </View>    
                         </View>
 
-                </View>
+                </View>*/}
                   
         </View>
 

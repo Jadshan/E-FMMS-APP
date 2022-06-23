@@ -1,15 +1,56 @@
+import 'react-native-gesture-handler';
 import React,{useContext, useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './authNavigators';
 import { AppStack } from './appStack';
 import { SignInContext } from '../contexts/authContext';
+import { initialValues } from '../screens/authScreens/SignUpScreen';
+import { SignInContextProvider } from '../contexts/authContext';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import ApppStack from '../Guest/Navigation/AppStack';
 export default function  RootNavigator (){
   const {signedIn} = useContext(SignInContext)
+ /* const [loger, setLoger] = useState()
+  const [logers, setLogers] = useState()
+  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+  let routeName;
+useEffect(() => {
+  AsyncStorage.getItem('alreadyLaunched').then((value) => {
+    if (value == null) {
+      AsyncStorage.setItem('alreadyLaunched', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
+      setIsFirstLaunch(true);
+    } else {
+      setIsFirstLaunch(false);
+    }
+  }); 
+}, []);
+  useEffect(() => {
+    firestore().collection("logers").doc(auth().currentUser.uid).get()
+        .then(loger => {
+            setLoger(loger.data())
+        })
+}, [])
+useEffect(() => {
+    if (loger)
+        firestore().collection("logers").where("role", "==", (loger?.role === "user" ? "user" : "Guest"))
+            .onSnapshot(logers => {
+                if (!logers.empty) {
+                    const LOGERS = []
+
+                    logers.forEach(loger => {
+                        LOGERS.push(loger.data())
+                    })
+
+                    setLogers(LOGERS)
+                }
+            })
+}, [loger])*/
   return (
     <NavigationContainer>
-    
-     {signedIn.userToken === null  ?  <AuthStack />: <AppStack />}
+ 
+     {signedIn.userToken === null  ?  <AuthStack />:/*(loger?.role === "user" ?          :<ApppStack />)*/<AppStack /> }
   </NavigationContainer>
   ) 
 }

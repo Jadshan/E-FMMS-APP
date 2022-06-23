@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "920143017824",
-    "project_id": "e-fmms-app",
-    "storage_bucket": "e-fmms-app.appspot.com"
+    "project_number": "381643932563",
+    "project_id": "e-fmms-app-43c34",
+    "storage_bucket": "e-fmms-app-43c34.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:920143017824:android:a4a131219c5b01bb4cd005",
+        "mobilesdk_app_id": "1:381643932563:android:329a497f0ccd7e95535e66",
         "android_client_info": {
           "package_name": "com.e_fmms_app_"
         }
       },
       "oauth_client": [
         {
-          "client_id": "920143017824-s13jl0d4t2cgnt096iopg2dgg6go1sjp.apps.googleusercontent.com",
+          "client_id": "381643932563-kn7icmu7q700ojfmv44q97q7schulgpk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.e_fmms_app_",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "381643932563-2i24gins1478qaj4obuespjim6bv5epq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBR9gC7q-vwcRThY4j78dItxOhSo8HI0Ao"
+          "current_key": "AIzaSyCmKZovbmzKT8xAiS4pQjNACKstvMIlC3c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "920143017824-s13jl0d4t2cgnt096iopg2dgg6go1sjp.apps.googleusercontent.com",
+              "client_id": "381643932563-2i24gins1478qaj4obuespjim6bv5epq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

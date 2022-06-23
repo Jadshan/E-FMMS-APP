@@ -6,6 +6,10 @@ import RootClientTabs from './Clienttabs';
 import Business from '../screens/Businessconsole';
 import DrawerContent from '../components/Drawercontent';
 import BottamTabs from '../Main/Navigation/Bottamtabs';
+import Guest from '../Guest/Navigation';
+import LoginScreen from '../Guest/screens/LoginScreen';
+
+
 
 
 
@@ -40,7 +44,7 @@ export default function DrawerNavigator(){
               name='RootClientTabs'
               component={RootClientTabs}
               options={{
-                  title:'Client',
+                  title:'Shopping',
                   drawerIcon: ({focused,size}) => (
                       <Icon
                       type='material-community'
@@ -57,6 +61,21 @@ export default function DrawerNavigator(){
               component={Business}
               options={{
                   title:'Business console',
+                  drawerIcon: ({focused,size}) => (
+                      <Icon
+                      type='material'
+                      name='business'
+                      color={focused ? '#7cc' :colors.grey}
+                      size={size}
+                       />
+                  )
+              }}
+          />  
+           <Drawer.Screen 
+              name='Guest'
+              component={LoginScreen}
+              options={{
+                  title:'Guest',
                   drawerIcon: ({focused,size}) => (
                       <Icon
                       type='material'

@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 
 export const colors = {
     
-    buttons: "#0FBD2C",
+    buttons: "#14803C",
     icon: "white",
     grey: "#4d4f4e",
     grey1:"#4d4f4e",
